@@ -1,0 +1,33 @@
+def binary_search(arr, target):
+    """
+    Perform binary search on a sorted array using an iterative approach.
+
+    :param arr: List[int], the sorted array in which to search.
+    :param target: int, the value to search for.
+    :return: int, the index of the target if found; otherwise, -1.
+    """
+    left = 0
+    right = len(arr) - 1
+
+    while left <= right:
+        mid = left + (right - left) // 2  # Prevents overflow for large values of left and right
+        if arr[mid] == target:
+            return mid  # Target found
+        elif arr[mid] < target:
+            left = mid + 1  # Ignore left half
+        else:
+            right = mid - 1  # Ignore right half
+
+    return -1  # Target not found
+
+
+# Example usage
+if __name__ == "__main__":
+    array = [1, 3, 5, 7, 9, 11]
+    target = 7
+    result = binary_search(array, target)
+
+    if result != -1:
+        print(f"Target {target} found at index {result}.")
+    else:
+        print(f"Target {target} not found in the array.")
