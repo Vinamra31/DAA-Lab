@@ -7,7 +7,7 @@ def insertion_sort(arr):
             j -= 1
         arr[j + 1] = key
 
-user_input = input("Enter numbers separated by spaces: ")
+user_input = input("Enter numbers: ")
 arr = list(map(int, user_input.split()))
 
 print("Original array:", arr)
