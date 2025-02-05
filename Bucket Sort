@@ -1,0 +1,32 @@
+import math
+
+def bucket_sort(arr):
+    if len(arr) == 0:
+        return arr
+    
+    min_val, max_val = min(arr), max(arr)
+    
+    bucket_count = math.ceil(math.sqrt(len(arr)))
+    
+    buckets = [[] for _ in range(bucket_count)]
+    
+    range_per_bucket = (max_val - min_val) / bucket_count if max_val != min_val else 1
+    
+    for num in arr:
+        index = int((num - min_val) / range_per_bucket)
+        if index == bucket_count:
+            index -= 1
+        buckets[index].append(num)
+    
+    sorted_arr = []
+    for bucket in buckets:
+        sorted_arr.extend(sorted(bucket))
+    
+    return sorted_arr
+
+try:
+    arr = list(map(float, input("Enter numbers separated by space: ").split()))
+    sorted_arr = bucket_sort(arr)
+    print("Sorted array:", sorted_arr)
+except ValueError:
+    print("Invalid input! Please enter numbers only.")
